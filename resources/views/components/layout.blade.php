@@ -22,6 +22,9 @@
                     Applications</a>
             </li>
             <li>
+                <a class="font-bold text-indigo-600" href="{{route('my-jobs.index')}}">My Jobs</a>
+            </li>
+            <li>
                 <form action="{{route('auth.destroy')}}" method="POST">
                     @csrf
                     @method('DELETE')
