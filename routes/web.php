@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\MyJobApplicationController;
@@ -21,13 +22,14 @@ Route::get('/', static fn() => to_route('jobs.index'));
 Route::resource('jobs', JobController::class)->only(['index', 'show']);
 
 Route::resource('auth', AuthController::class)->only(['create', 'store']);
-Route::get('login', static fn() => view('auth.login'))->name('login');
+Route::get('login', static fn() => view('auth.create'))->name('login');
 Route::delete('auth', [AuthController::class, 'destroy'])->name('auth.destroy');
 Route::delete('logout', static fn() => view('auth.destroy'))->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::resource('job.application', JobApplicationController::class)->only(['create', 'store']);
     Route::resource('my-job-applications', MyJobApplicationController::class)->only(['index', 'destroy']);
+    Route::resource('employer', EmployerController::class)->only(['create', 'store']);
 });
 
 
