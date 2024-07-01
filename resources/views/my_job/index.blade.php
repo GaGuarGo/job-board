@@ -30,6 +30,11 @@
 
                 <div class="flex space-x-2 mt-4">
                     <x-link-button href="{{route('my-jobs.edit', $job)}}">Edit</x-link-button>
+                    <form action="{{route('my-jobs.destroy', $job)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <x-button>Delete</x-button>
+                    </form>
                 </div>
 
             </div>
@@ -40,7 +45,8 @@
                 No jobs yet
             </div>
             <div class="text-center">
-                Post your first job <a class="text-indigo-500 hover:underline" href="{{route('my-jobs.create')}}">here!</a>
+                Post your first job <a class="text-indigo-500 hover:underline"
+                                       href="{{route('my-jobs.create')}}">here!</a>
             </div>
         </div>
     @endforelse
